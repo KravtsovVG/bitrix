@@ -39,7 +39,7 @@
     'totalProduct'=>...(общее кол-во товара)...,
     'totalSumm'=>...(общая сумма)...
   );
-```php
+```
 
 ---
 **FUNC::checkProductToCart($id)** - проверить есть ли товар в корзине. Возвращает true|false
