@@ -1,17 +1,20 @@
 В init.php должен подключаться модуль: ``` CModule::IncludeModule('iblock'); ```
 
-**FUNC::getResizeImg($idImg,[[[$width=220],$height=220],$width_size=false])** - ресайз фото
+*FUNC::getResizeImg($idImg,[[[$width=220],$height=220],$width_size=false])* - ресайз фото
+
  - $idImg - ID фото
  - $width - максимальная ширина
  - $height - максимальная высота
  - $width_size - FALSE - вернуть url, TRUE вернуть массив c url фото, с получившейся шириной, высотой и тп
 
 ---
-**FUNC::getCountProductsBasket** - получить общее кол-во товара в корзине
+
+*FUNC::getCountProductsBasket* - получить общее кол-во товара в корзине
 
 ---
 
-**FUNC::getSubSections($iblockID,[[[$sect_id=0],$active='Y'],$arSort=array('SORT'=>'ASC'),$arUF=array()])** - получить массив разделов (в коде массив array(...,array('id'=>...,'name'=>...,'url'=>...,'img'=>...),...) )
+*FUNC::getSubSections($iblockID,[[[$sect_id=0],$active='Y'],$arSort=array('SORT'=>'ASC'),$arUF=array()])* - получить массив разделов (в коде массив array(...,array('id'=>...,'name'=>...,'url'=>...,'img'=>...),...) )
+
  - $iblockID - ID инфоблока (обязательно)
  - $sect_id - в каком разделе (по-умолчанию в корне)
  - $active - активность (по-умолчанию только активные)
@@ -19,7 +22,8 @@
  - $arUF - массив пользовательских полей
 
 ---
-**FUNC::getBasket** - получить содержимое корзины. В коде массив
+
+*FUNC::getBasket* - получить содержимое корзины. В коде массив
 ```php
   array(
     'arBasket'=>array(
@@ -44,22 +48,27 @@
 ```
 
 ---
-**FUNC::checkProductToCart($id)** - проверить есть ли товар в корзине. Возвращает true|false
+
+*FUNC::checkProductToCart($id)* - проверить есть ли товар в корзине. Возвращает true|false
 
 ---
-**FUNC::getNewCodeSection($iblockID,$name)** - создать уникальный символьный код для разделов
+
+*FUNC::getNewCodeSection($iblockID,$name)* - создать уникальный символьный код для разделов
  - $iblockID - ID информационного блока
  - $name - имя
 
 ---
-**FUNC::getNewCodeElement($iblockID,$name)** - создать уникальный символьный код для элементов
+
+*FUNC::getNewCodeElement($iblockID,$name)* - создать уникальный символьный код для элементов
  - $iblockID - ID информационного блока
  - $name - имя
 
 ---
-**FUNC::is_mobile()** - проверка на мобильный браузер
+
+*FUNC::is_mobile()* - проверка на мобильный браузер
 
 ---
-**Translit::UrlTranslit($string)** - транслитерация для url
+
+*Translit::UrlTranslit($string)* - транслитерация для url
 
 ---
