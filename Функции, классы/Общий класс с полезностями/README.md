@@ -1,3 +1,5 @@
+В init.php должен подключаться модуль: ```php CModule::IncludeModule('iblock'); ```
+
 **FUNC::getResizeImg($idImg,[[[$width=220],$height=220],$width_size=false])** - ресайз фото
  - $idImg - ID фото
  - $width - максимальная ширина
