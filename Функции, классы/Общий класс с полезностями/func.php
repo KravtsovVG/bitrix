@@ -137,6 +137,48 @@ class FUNC{
     return false;
   }
 
+  // получить список новостей с пагинацией
+  public static function getNews($iblock_id,$page=1,$count=10){
+    if(!$page){$page=1;}
+    if(!$count){$count=10;}
+    $cache=new myCache('news_'.$iblock_id.'_'.$page.'_'.$count);
+    if($cache->check()){
+       $arSelect=array(
+          'IBLOCK_ID'=>$iblock_id,
+          'ACTIVE'=>'Y'
+       );
+       $arPage=array(
+          'iNumPage'=>$page,
+          'nPageSize'=>$count
+       );
+       $res=CIBlockElement::GetList(array('ACTIVE_FROM'=>'DESC','SORT'=>'ASC'),$arSelect,false,$arPage,array());
+       $arNews=array(
+          'paginator'=>$res->GetPageNavStringEx($navComponentObject, "","")
+       );
+       while($arItem=$res->GetNext()){
+          $img=$img_s=CFG::NOPHOTO_NEWS;
+          if((int)$arItem['DETAIL_PICTURE']){
+             $img=CFile::GetPath($arItem['DETAIL_PICTURE']);
+             $img_s=CFile::GetPath($arItem['PREVIEW_PICTURE']);
+          }
+          $arNews['items'][$arItem['ID']]=array(
+             'id'=>$arItem['ID'],
+             'name'=>$arItem['NAME'],
+             'name_'=>str_replace('"',"'",$arItem['NAME']),
+             'img'=>$img,
+             'img_small'=>$img_s,
+             'anons'=>$arItem['PREVIEW_TEXT'],
+             'url'=>$arItem['DETAIL_PAGE_URL'],
+             'date'=>FormatDate('d f Y',MakeTimeStamp($arItem['ACTIVE_FROM'],CSite::GetDateFormat())),
+          );
+       }
+       $cache->read(serialize($arNews));
+       return $arNews;
+    }else{
+       return unserialize($cache->read());
+    }
+  }
+
   // Функция определения мобильных браузеров
   public static function is_mobile(){
     $user_agent=strtolower(getenv('HTTP_USER_AGENT'));
