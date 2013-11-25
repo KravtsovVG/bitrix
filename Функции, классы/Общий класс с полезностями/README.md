@@ -62,6 +62,7 @@
 **FUNC::getNewCodeElement($iblockID,$name)** - создать уникальный символьный код для элементов
  - $iblockID - ID информационного блока
  - $name - имя
+ 
 ---
 
 **FUNC::getNews($iblock_id,$page,$count)** - получить массив новостей с пагинацией (необходим myCache)
@@ -87,7 +88,7 @@ array(
     ...,
   ),
   'paginator'=>...Строка. Пагинация согласно шаблона .default компонента system.pagenavigation...
-)
+);
 ```
 
 ---
