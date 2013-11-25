@@ -65,9 +65,12 @@
 ---
 
 **FUNC::getNews($iblock_id,$page,$count)** - получить массив новостей с пагинацией (необходим myCache)
-$iblock_id - ID инфоблока
-$page - страница
-$count - кол-во новостей на странице
+
+- $iblock_id - ID инфоблока
+- $page - страница
+- $count - кол-во новостей на странице
+
+```php
 array(
   'items'=>array(
     ...,
@@ -85,6 +88,7 @@ array(
   ),
   'paginator'=>...Строка. Пагинация согласно шаблона .default компонента system.pagenavigation...
 )
+```
 
 ---
 
