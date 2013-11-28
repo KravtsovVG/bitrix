@@ -1,5 +1,11 @@
 Внимание!!! В init.php должен подключаться модуль: ``` CModule::IncludeModule('iblock'); ```
 
+**FUNC::getEndWord($count,$text0='товаров',$text1='товар',$text2='товара')** - возвращает слово с нужным окончанием
+
+ - $count - кол-во (в данном случае товаров)
+ - 0 товаров
+ - 1 товар
+ - 2 товара
 
 **FUNC::getPropOrderVal($order_id, $prop_id, [$or_prop_id=false])** - возвращает значение свойства заказа
 
