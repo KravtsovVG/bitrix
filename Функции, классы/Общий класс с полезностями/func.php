@@ -1,5 +1,46 @@
 <?
 class FUNC{
+  
+	/****
+	* возвращает значение свойства с id  $prop_id в заказе с id $order_id
+	* если нет значения свойства, то происходит попытка вернуть свойство с id $or_prop_id, если задан
+	* часто приходиться получить свойство в зависимости от типа плательщика
+	* если значения свойство не получено, то возвращается false
+	*
+	* @author Rmld.
+	*/
+	public static function getPropOrderVal($order_id, $prop_id, $or_prop_id=false)
+	{
+		
+		$result = false;
+		
+		$itr = array($prop_id, $or_prop_id);
+		
+		foreach ($itr as $_prop_id)
+		{
+			if ($_prop_id == false){continue;}
+			
+			$db_vals = CSaleOrderPropsValue::GetList(
+				array("SORT" => "ASC"),
+				array(
+						"ORDER_ID" => $order_id,
+						"ORDER_PROPS_ID" => $_prop_id 
+					)
+			);
+			if ($arVals = $db_vals->Fetch())
+			{
+				if (!empty($arVals['VALUE']))
+				{
+					$result = $arVals['VALUE'];
+					break;
+				}								
+			}
+		}
+		
+		return $result;	
+	}
+  
+  
   // ресайз фото. ID фото в битриксе, макс ширина, макс высота, возвр. ли размеры после ресайза
   public static function getResizeImg($idImg,$width=220,$height=220,$width_size=false){
     if($width_size){

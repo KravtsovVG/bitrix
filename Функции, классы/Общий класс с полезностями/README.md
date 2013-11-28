@@ -1,5 +1,12 @@
 Внимание!!! В init.php должен подключаться модуль: ``` CModule::IncludeModule('iblock'); ```
 
+
+**FUNC::getPropOrderVal($order_id, $prop_id, [$or_prop_id=false])** - возвращает значение свойства заказа
+
+ - $order_id - ID заказа
+ - $prop_id - ID свойства
+ - $or_prop_id - ID альтернативного свойства
+
 **FUNC::getResizeImg($idImg,[[[$width=220],$height=220],$width_size=false])** - ресайз фото
 
  - $idImg - ID фото
