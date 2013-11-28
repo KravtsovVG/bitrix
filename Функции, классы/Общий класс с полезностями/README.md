@@ -1,4 +1,4 @@
-В init.php должен подключаться модуль: ``` CModule::IncludeModule('iblock'); ```
+Внимание!!! В init.php должен подключаться модуль: ``` CModule::IncludeModule('iblock'); ```
 
 **FUNC::getResizeImg($idImg,[[[$width=220],$height=220],$width_size=false])** - ресайз фото
 
