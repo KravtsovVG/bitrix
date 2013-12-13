@@ -15,6 +15,70 @@ class FUNC{
     return $text;
   }
 
+  // paginator
+  public static function paginator($page=1,$sizePage=10,$total){
+    $html='';
+    if($page&&$sizePage&&$total){
+      $count=ceil($total/$sizePage);
+      if($page==$count){
+        $last=$count;
+        if($page-4>0){
+          $first=$page-4;
+        }else{$first=1;}
+      }elseif($page<3){
+        $first=1;
+        $last=$count>$last?5:$count;
+      }elseif($count-2<$page){
+        $last=$count;
+        $first=$last-5;
+      }else{
+        $first=$page-2;
+        $last=$page+2;
+      }
+      $html.='<div class="counter">';
+      if($page>1){
+        if($page==2){
+          preg_match('/^([^\?]+)/si',$_SERVER['REQUEST_URI'],$uri);
+          $uri=$uri[1];
+        }else{
+          $uri='?page='.($page-1);
+        }
+        $html.='<a href="'.$uri.'">Назад</a>';
+      }else{
+        $html.='<span>Назад</span>';
+      }
+      preg_match('/^([^\?]+)/si',$_SERVER['REQUEST_URI'],$uri);
+      $uri=$uri[1];
+      for($i=$first;$i<=$last;$i++){
+        if($i==$page){
+          $html.='<span>'.$page.'</span>';
+        }else{
+          if($i==1){
+            $html.='<a href="'.$uri.'">'.$i.'</a>';
+          }else{
+            $html.='<a href="?page='.$i.'">'.$i.'</a>';
+          }
+        }
+      }
+      if($count==$page){
+        $html.='<span>Дальше</span>';
+      }else{
+        $html.='<a href="?page='.($page+1).'">Дальше</a>';
+      }
+      $html.='</div>';
+    }
+    return array('html'=>$html);
+  /*      <div class="counter">
+      <a href="#">Назад</a>
+      <a href="#">1</a>
+      <span>2</span>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">Дальше</a>
+    </div>*/
+  }
+
 	/****
 	* возвращает значение свойства с id  $prop_id в заказе с id $order_id
 	* если нет значения свойства, то происходит попытка вернуть свойство с id $or_prop_id, если задан

@@ -1,5 +1,23 @@
 Внимание!!! В init.php должен подключаться модуль: ``` CModule::IncludeModule('iblock'); ```
 
+**FUNC::paginator($page=1,$sizePage=10,$total)** - выводит пагинацию в виде:
+
+```html
+  <div class="counter">
+    <a href="/url/">Назад</a>
+    <a href="/url/">1</a>
+    <span>2</span>
+    <a href="?page=3">3</a>
+    <a href="?page=4">4</a>
+    <a href="?page=5">5</a>
+    <a href="?page=5">Дальше</a>
+  </div>
+```
+
+ - $page=1 - текущая страница
+ - $sizePage=10 - элементов на странице
+ - $total - всего элементов
+
 **FUNC::getEndWord($count,$text0='товаров',$text1='товар',$text2='товара')** - возвращает слово с нужным окончанием
 
  - $count - кол-во (в данном случае товаров)
