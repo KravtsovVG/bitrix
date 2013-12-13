@@ -35,6 +35,7 @@ class FUNC{
         $first=$page-2;
         $last=$page+2;
       }
+      if($last>$count){$last=$count;}
       $html.='<div class="counter">';
       if($page>1){
         if($page==2){
