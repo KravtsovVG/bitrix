@@ -174,14 +174,17 @@ class FUNC{
   }
 
   // получить содержимое корзины
-  public static function getBasket(){
+  public static function getBasket($id="NULL",$idUser=''){
     CModule::IncludeModule('sale');
+    if (!$idUser){
+      $idUser=CSaleBasket::GetBasketUserID();
+    }
     //CModule::IncludeModule('iblock');
     $dbBasketItems=CSaleBasket::GetList(
       array(),array(
-        "FUSER_ID" => CSaleBasket::GetBasketUserID(),
+        "FUSER_ID" => $idUser,
         "LID" => SITE_ID,
-        "ORDER_ID" => "NULL"
+        "ORDER_ID" => $id
       ),false,false,array()
     );
     $basket=array();
