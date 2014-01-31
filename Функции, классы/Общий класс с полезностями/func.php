@@ -170,7 +170,7 @@ class FUNC{
   }
 
   // получить содержимое корзины
-  public static function getBasket($id="NULL",$idUser=''){
+  public static function getBasket($id="NULL", $idUser=''){
     CModule::IncludeModule('sale');
     if (!$idUser){
       $idUser=CSaleBasket::GetBasketUserID();
@@ -203,6 +203,7 @@ class FUNC{
         'count'=>(int)$arItems['QUANTITY'],
         'sum'=>$arItems['QUANTITY']*$arItems['PRICE'],
         'idBasket'=>$arItems['ID'],
+        'delay'=>$arItems['DELAY'],
       );
       $totalProduct+=(int)$arItems['QUANTITY'];
       $totalSumm+=$arItems['PRICE']*$arItems['QUANTITY'];
