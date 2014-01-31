@@ -88,15 +88,10 @@ class FUNC{
 	*
 	* @author Rmld.
 	*/
-	public static function getPropOrderVal($order_id, $prop_id, $or_prop_id=false)
-	{
-		
+	public static function getPropOrderVal($order_id, $prop_id, $or_prop_id=false) {
 		$result = false;
-		
 		$itr = array($prop_id, $or_prop_id);
-		
-		foreach ($itr as $_prop_id)
-		{
+		foreach ($itr as $_prop_id) {
 			if ($_prop_id == false){continue;}
 			
 			$db_vals = CSaleOrderPropsValue::GetList(
@@ -136,7 +131,7 @@ class FUNC{
   }
 
   // получить кол-во товара в корзине
-  static public function getCountProductsBasket(){
+  static public function getCountProductsBasket($group=false){
     CModule::IncludeModule('sale');
     $totalProduct=0;
     $dbBasketItems=CSaleBasket::GetList(
@@ -146,6 +141,7 @@ class FUNC{
         "ORDER_ID" => "NULL"
       ),false,false,array()
     );
+    if ($group) { return $dbBasketItems->SelectedRowsCount(); }
     while($arItems=$dbBasketItems->GetNext()){
       $totalProduct+=$arItems['QUANTITY'];
     }
@@ -413,12 +409,12 @@ class Translit{
  }
 
   public static function UrlTranslit($string){
-    $string = preg_replace("/[_\s\.,?!\[\](){}]+/", "_", $string);
+    $string = preg_replace("/[_\s\.,?!\[\](){}]+/", "-", $string);
     $string = preg_replace("/-{2,}/", "--", $string);
     $string = preg_replace("/_-+_/", "--", $string);
     $string = preg_replace("/[_\-]+$/", "", $string);
     $string = Translit::Transliterate($string);
-    $string = ToLower($string);
+    $string = strtolower($string);
     $string = preg_replace("/j{2,}/", "j", $string);
     $string = preg_replace("/[^0-9a-z_\-]+/", "", $string);
     return $string;
