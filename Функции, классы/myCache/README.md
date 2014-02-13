@@ -47,6 +47,7 @@ Bitrix cache
 	$cacheID = 'arrData'; // используем некое уникальное имя для кэша
 	$cacheLifetime = 3600*24; // сутки
 	if ( $obCache->InitCache($cacheLifetime, $cacheID) ) {
+		$vars = $obCache->GetVars();
 		$arrData = $vars['arrData'];
 	} else {
 		$arrData = ... ;
