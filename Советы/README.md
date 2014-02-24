@@ -19,3 +19,16 @@ class CFG{
 }
 CFG::init();
 ```
+
+2.
+==
+
+Файлы надо удалять через массив с параметром "del"=>"Y".
+Удаление свойства типа "Файл":
+```php
+CIBlockElement::SetPropertyValuesEx(ELEMENT_ID, IBLOCK_ID, array(PROPERTY_ID => Array ("VALUE" => array("del" => "Y"))));
+```
+
+```
+http://dev.1c-bitrix.ru/api_help/iblock/classes/ciblockelement/setpropertyvalues.php
+```
