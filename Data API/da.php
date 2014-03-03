@@ -95,7 +95,7 @@ abstract class DA {
 
   exit(); */
 
-class IBlockElement extends DA {
+class IBE extends DA {
 
     public $arr_select_prop = array(); // массив дополниельных свойств 
 
