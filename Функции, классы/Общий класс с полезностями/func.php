@@ -148,7 +148,7 @@ class FUNC{
     return $totalProduct;
   }
 
-  // получить разделы
+  // получить подразделы
   static public function getSubSections($iblockID=0,$sect_id=0,$active='Y',$arSort=array('SORT'=>'ASC'),$arUF=array()){
     if($iblockID){
       $res=CIBlockSection::GetList($arSort,array('SECTION_ID'=>$sect_id,'IBLOCK_ID'=>$iblockID,'ACTIVE'=>$active),false,$arUF);

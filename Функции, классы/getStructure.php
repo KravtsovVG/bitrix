@@ -74,7 +74,7 @@ function getStructure($id, $section=false, $arUf=array()) {
   }
   return $arStructure;
 }
-// noRoman (получить родительские разделы без пользовательскими свойствами )
+// noRoman (получить родительские разделы без пользовательских свойств )
 function getStructure($id, $section=false) {
   $id = (int)$id;
   if (!$id) { return false; }
