@@ -5,10 +5,13 @@ function getStructure($id, $section=false, $arUf=array()) {
   if (!$id) { return false; }
   if ($section) {
     $res = CIBlockSection::GetByID($id);
+    if ( $ar = $res->GetNext() ) {
+      $res = CIBlockSection::GetList(array(), array('IBLOCK_ID'=>$ar['IBLOCK_ID'], 'ID'=>$ar['ID']), false, $arUf);
+    } else { return false; }
   } else {
     $res = CIBlockElement::GetByID($id);
-    if ( $ar = $res->GetNext() ){
-      $res = CIBlockSection::GetByID($ar['IBLOCK_SECTION_ID']);
+    if ( $ar = $res->GetNext() ) {
+      $res = CIBlockSection::GetList(array(), array('IBLOCK_ID'=>$ar['IBLOCK_ID'], 'ID'=>$ar['IBLOCK_SECTION_ID']), false, $arUf);
     } else { return false; }
   }
   // херню подсунули
