@@ -14,17 +14,18 @@ function getStructure($id, $section=false, $arUf=array()) {
   // херню подсунули
   if ( !$res->SelectedRowsCount() ) { return false; }
   $arSect = $res->GetNext();
+  $arStructure = array();
   $res = CIBlockSection::GetList(array('LEFT_MARGIN'=>'ASC'), array(
     'IBLOCK_ID' => $arSect['IBLOCK_ID'],
     '<=LEFT_BORDER' => $arSect['LEFT_MARGIN'],
     '>=RIGHT_BORDER' => $arSect['RIGHT_MARGIN'],
     '<DEPTH_LEVEL' => $arSect['DEPTH_LEVEL'],
-    '!UF_NOSHOW'=>false
-    ), $arUf);
-  $arStructure = array();
+    ), false, $arUf);
+  
   while($ar = $res->GetNext()){
     $arStructure[] = $ar;
   }
+  $arStructure[] = $arSect;
   return $arStructure;
 }
 // получить родительские разделы без пользовательских свойств
